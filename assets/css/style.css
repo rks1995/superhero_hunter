@@ -1,0 +1,123 @@
+/* google fonts */
+@import url('https://fonts.googleapis.com/css2?family=Black+Ops+One&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Black Ops One', cursive;
+}
+
+body {
+    background-color: #000;
+}
+
+a {
+    text-decoration: none;
+}
+
+#navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 2rem 1rem;
+    border-bottom: 1px solid brown;
+    /* background-color: #221251; */
+    background-image: linear-gradient(to right,black 30%, brown);
+}
+
+#logo,
+#search,
+#search::placeholder {
+    color: #B153F0;
+}
+
+#search {
+    padding: 10px;
+    border: 2px solid brown;
+    outline: none;
+    width: 200px;
+    background-color: #000;
+    font-size: 1.125rem;
+    border-radius: 5px;
+}
+
+@media screen and (min-width: 750px) {
+    #search {
+        width: 450px;
+    }
+}
+
+#favourites {
+    padding: 10px;
+    background-color: #B153F0;
+    color: #fff;
+    border: none;
+    border-radius: 20px 0 20px 0;
+}
+
+/* =====================Display Hero container============ */
+
+.display-hero-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+    padding: 20px;
+}
+
+@media screen and (min-width: 600px) {
+    .display-hero-container {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+@media screen and (min-width: 930px) {
+    .display-hero-container {
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
+
+.display-hero-container .hero-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 10px;
+    width: 200px;
+    background-color: brown;
+    border-radius: 5px;
+    /* box-shadow: 0 0 10px 5px #333; */
+}
+
+.hero-card>img {
+    width: 100%;
+}
+
+.hero-card .hero-name {
+    margin: .75rem;
+    color: #fff;
+    transition: .3s;
+}
+
+.hero-name:hover {
+    color: teal;
+}
+
+#fav-btn {
+    padding: 10px 5px;
+    background-color: #fff;
+    border: 1px solid;
+    border-radius: 5px;
+    transition: .3s;
+}
+
+#fav-btn:hover {
+    background-color: #333;
+    color: #fff;
+}
+
+.center {
+    margin-top: 20px;
+    font-size: 1.25rem;
+    text-align: center;
+    color: gainsboro;
+}
