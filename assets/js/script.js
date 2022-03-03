@@ -1,12 +1,24 @@
 // access_token = 338148107599656
 import './hero.js';
+import './fav.js';
 
 const searchInput = document.getElementById('search');
-const favBtn = document.getElementById('favourites');
 const heroContainer = document.querySelector('.display-hero-container');
+
+const clearBtn = document.getElementById('clear-btn');
 const text = document.getElementById('text');
 
-var heroName = '';
+var heroName = '' || localStorage.getItem('name');
+
+//for storing all heroids in the local storage to show in favourite page
+var heroIds = [];
+
+if (clearBtn) {
+  clearBtn.addEventListener('click', () => {
+    localStorage.removeItem('name');
+    window.location.reload();
+  });
+}
 
 const getHeroName = (e) => {
   text.style.display = 'block';
@@ -14,7 +26,10 @@ const getHeroName = (e) => {
   heroContainer.innerHTML = '';
   if (heroName.length == 0) {
     text.innerText = 'Search your favourite heroes / villians';
-  } else if (heroName.length >= 3) {
+    localStorage.removeItem('name');
+    clearBtn.style.display = 'none';
+  } else if (heroName.length > 3) {
+    localStorage.setItem('name', heroName);
     fetchHeroDetails(heroName);
   } else {
     text.innerText = 'Type atleast 3 characters';
@@ -35,8 +50,7 @@ const fetchHeroDetails = (heroName) => {
     if (response.results) {
       text.style.display = 'none';
       for (let hero of response.results) {
-        let imgUrl = hero.image.url;
-        let name = hero.name;
+        const { image, name } = hero;
 
         //creating element
         let div = document.createElement('div');
@@ -51,7 +65,7 @@ const fetchHeroDetails = (heroName) => {
         btn.innerText = 'Add to favourite';
 
         a.setAttribute('href', 'hero.html');
-        img.setAttribute('src', imgUrl);
+        img.setAttribute('src', image.url);
         h2.innerText = name;
 
         a.appendChild(h2);
@@ -61,11 +75,23 @@ const fetchHeroDetails = (heroName) => {
 
         //storing the hero name in session strorage when clicking on the hero card;
         a.addEventListener('click', () => {
-          sessionStorage.setItem('id', hero.id);
+          localStorage.setItem('id', hero.id);
+        });
+
+        // adding favourites
+        btn.addEventListener('click', () => {
+          alert('added to favorites');
+          if (!heroIds.includes(hero.id)) {
+            heroIds.push(hero.id);
+          }
+          localStorage.setItem('ids', JSON.stringify(heroIds));
         });
 
         //append all elements into hero container
         heroContainer.appendChild(div);
+
+        //show clear list btn
+        clearBtn.style.display = 'block';
       }
     } else {
       text.innerText = 'Enter valid character name';
@@ -75,4 +101,15 @@ const fetchHeroDetails = (heroName) => {
 
 if (searchInput) {
   searchInput.addEventListener('keyup', getHeroName);
+}
+
+// if the local storage isn't empty show the list of heroes
+if (heroName) {
+  fetchHeroDetails(heroName);
+}
+
+//store all the ids from the local storage if present to hero-ids
+if (localStorage.getItem('ids')) {
+  var ids = localStorage.getItem('ids');
+  heroIds = JSON.parse(ids);
 }

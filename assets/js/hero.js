@@ -3,30 +3,33 @@ const imgContainer = document.getElementById('hero-img');
 const statsContainer = document.getElementById('hero-stats');
 
 //create element
-const nameOfHero = document.createElement('h1');
 const img = document.createElement('img');
+
 const powerstatsDiv = document.createElement('div');
 const bioDiv = document.createElement('div');
 const appearanceDiv = document.createElement('div');
 const connectionDiv = document.createElement('div');
 
+const nameOfHero = document.createElement('h1');
 const heading1 = document.createElement('h1');
 const heading2 = document.createElement('h1');
 const heading3 = document.createElement('h1');
 const heading4 = document.createElement('h1');
 
+//unordered list
 const ul1 = document.createElement('ul');
 const ul2 = document.createElement('ul');
 const ul3 = document.createElement('ul');
 const ul4 = document.createElement('ul');
 
 //get id from session storage
-if (sessionStorage.getItem('id')) {
-  var heroID = sessionStorage.getItem('id');
+if (localStorage.getItem('id')) {
+  var heroID = localStorage.getItem('id');
   getHeroDetails(heroID);
 }
 
 function getHeroDetails(heroID) {
+  //http request to get hero based on their id's
   const httpReq = new XMLHttpRequest();
   httpReq.open(
     'GET',
@@ -43,6 +46,7 @@ function getHeroDetails(heroID) {
 
 //hero stats
 function setHeroStats(states, unorderedList) {
+  //for every heroes states create list item and append to the unordered list
   for (let state in states) {
     if (state !== 'aliases') {
       const list = document.createElement('li');
@@ -62,12 +66,13 @@ function appendChildElement(parentNode, childNode) {
   parentNode.appendChild(childNode);
 }
 
-//setHeading for the hero details
+//setHeading for the hero stats
 function setHeading(headingName, heading) {
   heading.innerText = headingName;
 }
 
 function createElement(response) {
+  // destructuring the properties of response
   const { name, powerstats, biography, appearance, connections, image } =
     response;
 

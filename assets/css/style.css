@@ -23,7 +23,7 @@ a {
     padding: 2rem 1rem;
     border-bottom: 1px solid brown;
     /* background-color: #221251; */
-    background-image: linear-gradient(to right,black 30%, brown);
+    background-image: linear-gradient(to right, black 30%, brown);
 }
 
 #logo,
@@ -58,7 +58,8 @@ a {
 
 /* =====================Display Hero container============ */
 
-.display-hero-container {
+.display-hero-container , 
+.fav-hero-container {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 30px;
@@ -66,18 +67,21 @@ a {
 }
 
 @media screen and (min-width: 710px) {
-    .display-hero-container {
+    .display-hero-container,
+    .fav-hero-container {
         grid-template-columns: repeat(3, 1fr);
     }
 }
 
 @media screen and (min-width: 930px) {
-    .display-hero-container {
+    .display-hero-container,
+    .fav-hero-container {
         grid-template-columns: repeat(4, 1fr);
     }
 }
 
-.display-hero-container .hero-card {
+.display-hero-container .hero-card,
+.fav-hero-container .hero-card {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -85,7 +89,6 @@ a {
     width: 200px;
     background-color: brown;
     border-radius: 5px;
-    /* box-shadow: 0 0 10px 5px #333; */
 }
 
 .hero-card>img {
@@ -120,4 +123,19 @@ a {
     font-size: 1.25rem;
     text-align: center;
     color: gainsboro;
+}
+
+.clear-div {
+    display: flex;
+    justify-content: center;
+}
+
+#clear-btn {
+    padding: 10px;
+    margin-top: 20px;
+    display: none;
+    border: none;
+    background-color: brown;
+    color: #fff;
+    border-radius: 10px 0 10px 0;
 }
