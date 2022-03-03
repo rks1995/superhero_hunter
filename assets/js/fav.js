@@ -57,6 +57,10 @@ function showFavorites(response) {
   img.setAttribute('src', image.url);
   h2.innerText = name;
 
+  a.addEventListener('click', () => {
+    localStorage.setItem('id', response.id);
+  });
+
   //removing favorites
   btn.addEventListener('click', () => {
     const id = response.id;
@@ -78,6 +82,3 @@ function showFavorites(response) {
 
   appendChildElement(heroContainer, div);
 }
-
-// the problem is in the local storage
-// when ids == [];
