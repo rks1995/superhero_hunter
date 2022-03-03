@@ -5,8 +5,12 @@ const text = document.getElementById('fav-text');
 
 var newArrayIds = [];
 
-if (localStorage.getItem('ids') != '[]') {
-  text.style.display = 'none';
+if (localStorage.getItem('ids') === '[]') {
+  localStorage.removeItem('ids');
+}
+
+if (localStorage.getItem('ids')) {
+  if (text !== null) text.style.display = 'none';
   let ids = localStorage.getItem('ids');
   newArrayIds = JSON.parse(ids);
   extractId(newArrayIds);
@@ -25,6 +29,12 @@ function httpResquest(id) {
 function extractId(newArrayIds) {
   for (let id of newArrayIds) {
     httpResquest(id);
+  }
+}
+
+function appendChildElement(parentNode, childNode) {
+  if (parentNode !== null) {
+    parentNode.appendChild(childNode);
   }
 }
 
@@ -61,10 +71,13 @@ function showFavorites(response) {
     window.location.reload();
   });
 
-  a.appendChild(h2);
-  div.appendChild(img);
-  div.appendChild(a);
-  div.appendChild(btn);
+  appendChildElement(a, h2);
+  appendChildElement(div, img);
+  appendChildElement(div, a);
+  appendChildElement(div, btn);
 
-  heroContainer.appendChild(div);
+  appendChildElement(heroContainer, div);
 }
+
+// the problem is in the local storage
+// when ids == [];

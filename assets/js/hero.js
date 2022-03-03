@@ -63,7 +63,7 @@ function setHeroStats(states, unorderedList) {
 
 //appendChild function
 function appendChildElement(parentNode, childNode) {
-  parentNode.appendChild(childNode);
+  if (parentNode !== null) parentNode.appendChild(childNode);
 }
 
 //setHeading for the hero stats
