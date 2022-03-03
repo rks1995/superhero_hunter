@@ -1,5 +1,8 @@
 // access_token = 338148107599656
+import './hero.js';
+
 const searchInput = document.getElementById('search');
+const favBtn = document.getElementById('favourites');
 const heroContainer = document.querySelector('.display-hero-container');
 const text = document.getElementById('text');
 
@@ -34,6 +37,8 @@ const fetchHeroDetails = (heroName) => {
       for (let hero of response.results) {
         let imgUrl = hero.image.url;
         let name = hero.name;
+
+        //creating element
         let div = document.createElement('div');
         let img = document.createElement('img');
         let a = document.createElement('a');
@@ -42,14 +47,22 @@ const fetchHeroDetails = (heroName) => {
         div.classList.add('hero-card');
         h2.classList.add('hero-name');
         btn.id = 'fav-btn';
+
         btn.innerText = 'Add to favourite';
+
         a.setAttribute('href', 'hero.html');
         img.setAttribute('src', imgUrl);
         h2.innerText = name;
+
         a.appendChild(h2);
         div.appendChild(img);
         div.appendChild(a);
         div.appendChild(btn);
+
+        //storing the hero name in session strorage when clicking on the hero card;
+        a.addEventListener('click', () => {
+          sessionStorage.setItem('id', hero.id);
+        });
 
         //append all elements into hero container
         heroContainer.appendChild(div);
@@ -60,4 +73,6 @@ const fetchHeroDetails = (heroName) => {
   };
 };
 
-searchInput.addEventListener('keyup', getHeroName);
+if (searchInput) {
+  searchInput.addEventListener('keyup', getHeroName);
+}
