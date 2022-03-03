@@ -6,7 +6,7 @@ const searchInput = document.getElementById('search');
 const heroContainer = document.querySelector('.display-hero-container');
 
 const clearBtn = document.getElementById('clear-btn');
-const text = document.getElementById('text');
+// const text = document.getElementById('text');
 
 var heroName = '' || localStorage.getItem('name');
 
