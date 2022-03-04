@@ -13,6 +13,8 @@ var heroName = '' || localStorage.getItem('name');
 //for storing all heroids in the local storage to show in favourite page
 var heroIds = [];
 
+localStorage.removeItem('id');
+
 if (clearBtn) {
   clearBtn.addEventListener('click', () => {
     localStorage.removeItem('name');
