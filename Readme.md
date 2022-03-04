@@ -19,8 +19,8 @@ An app where user can search their favourites heroes / villians.
 
 # API used
 
-    link- https://superheroapi.com/?ref=apilist.fun
+link- https://superheroapi.com/?ref=apilist.fun
 
 # Live Preview
 
-    link- https://rks1995.github.io/superhero_hunter/
+link- https://rks1995.github.io/superhero_hunter/
